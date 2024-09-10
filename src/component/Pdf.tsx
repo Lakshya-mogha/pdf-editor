@@ -1,4 +1,4 @@
-import { PDFDocument, StandardFonts } from "pdf-lib";
+import { PDFDocument } from "pdf-lib";
 
 import React, { useEffect, useState } from "react";
 
@@ -15,14 +15,10 @@ function Pdf({ file }: PdfLibIf) {
     const pdfLibDoc = await PDFDocument.load(pdfData);
     setPdf(pdfLibDoc);
     if (pdf) {
-      const helveticaFont = await pdf.embedFont(StandardFonts.Helvetica);
+      // const pages = pdf.getPages();
+      // const firstPage = pages[0];
 
-      // Get the first page of the document
-      const pages = pdf.getPages();
-      const firstPage = pages[0];
-
-      // Get the width and height of the first page
-      const { width, height } = firstPage.getSize();
+      // const { width, height } = firstPage.getSize();
 
       // // Draw a string of text diagonally across the first page
       // firstPage.drawText("This text was added with JavaScript!", {
@@ -64,7 +60,6 @@ function Pdf({ file }: PdfLibIf) {
       setPdfUrl(url);
     }
 
-    // Cleanup the URL object when the component unmounts
     return () => {
       URL.revokeObjectURL(pdfUrl);
     };
