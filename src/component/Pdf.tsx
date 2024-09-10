@@ -1,4 +1,4 @@
-import { degrees, PDFDocument, rgb, StandardFonts } from "pdf-lib";
+import { PDFDocument, StandardFonts } from "pdf-lib";
 
 import React, { useEffect, useState } from "react";
 
@@ -58,11 +58,10 @@ function Pdf({ file }: PdfLibIf) {
       const blob = new Blob([editedPdfDoc], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
       setPdfUrl(url);
-    }
-    else{
-      const blob = new Blob([file], {type:"application/pdf"});
+    } else {
+      const blob = new Blob([file], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
-      setPdfUrl(url)
+      setPdfUrl(url);
     }
 
     // Cleanup the URL object when the component unmounts
